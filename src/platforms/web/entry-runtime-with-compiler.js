@@ -4,6 +4,8 @@ import config from 'core/config'
 import { warn, cached } from 'core/util/index'
 import { mark, measure } from 'core/util/perf'
 
+//
+//这个文件并不是 Vue 构造函数的“出生地”，这个文件中的 Vue 是从 ./runtime/index 导入进来的，于是我们就打开当前目录的 runtime 目录下的 index.js 看一下，你同样能够发现这样一句话：
 import Vue from './runtime/index'
 import { query } from './util/index'
 import { compileToFunctions } from './compiler/index'

@@ -24,6 +24,7 @@ const weexFactoryPlugin = {
   }
 }
 
+//设置配置文件别名，在alias文件中定义了
 const aliases = require('./alias')
 const resolve = p => {
   const base = p.split('/')[0]
@@ -33,7 +34,8 @@ const resolve = p => {
     return path.resolve(__dirname, '../', p)
   }
 }
-
+//如果按照输出的模块形式分类，那么 Vue 有三种不同的构建输出，分别是：UMD、CommonJS 以及 ES Module，我们可以在 Vue 的 Rollup 构建配置中得知，打开 scripts/config.js 文件
+//每种模块形式又分别输出了 运行时版 以及 完整版
 const builds = {
   // Runtime only (CommonJS). Used by bundlers e.g. Webpack & Browserify
   'web-runtime-cjs': {
@@ -83,6 +85,7 @@ const builds = {
     banner
   },
   // Runtime+compiler development build (Browser)
+  //Vue 构造函数的原型在 了解 Vue 这个项目 一节中，我们在最后提到这套文章将会以 npm run dev 为切入点
   'web-full-dev': {
     entry: resolve('web/entry-runtime-with-compiler.js'),
     dest: resolve('dist/vue.js'),
