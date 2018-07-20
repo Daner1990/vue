@@ -1,6 +1,7 @@
 /* @flow */
 
 import { toArray } from '../util/index'
+//该方法的作用是在 Vue 构造函数上添加 use 方法，也就是传说中的 Vue.use 这个全局API，这个方法大家应该不会陌生，用来安装 Vue 插件。
 
 export function initUse (Vue: GlobalAPI) {
   Vue.use = function (plugin: Function | Object) {

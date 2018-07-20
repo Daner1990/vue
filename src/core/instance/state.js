@@ -311,6 +311,9 @@ export function stateMixin (Vue: Class<Component>) {
   // flow somehow has problems with directly declared definition object
   // when using Object.defineProperty, so we have to procedurally build up
   // the object here.
+  //$data 属性实际上代理的是 _data 这个实例属性，而 $props 代理的是 _props 这个实例属性。然后有一个是否为生产环境的判断，如果不是生产环境的话，就为 $data 和 $props 这两个属性设置一下 set，实际上就是提示你一下：别他娘的想修改我，老子无敌。
+
+//也就是说，$data 和 $props 是两个只读的属性，所以，现在让你使用 js 实现一个只读的属性，你应该知道要怎么做了。
   const dataDef = {}
   dataDef.get = function () { return this._data }
   const propsDef = {}
@@ -327,9 +330,11 @@ export function stateMixin (Vue: Class<Component>) {
       warn(`$props is readonly.`, this)
     }
   }
+  //我们先看最后两句，使用 Object.defineProperty 在 Vue.prototype 上定义了两个属性，就是大家熟悉的：$data 和 $props，这两个属性的定义分别写在了 dataDef 以及 propsDef 这两个对象里
   Object.defineProperty(Vue.prototype, '$data', dataDef)
   Object.defineProperty(Vue.prototype, '$props', propsDef)
 
+    //这三个方法分别是：$set、$delete 以及 $watch，实际上这些东西你都见过的，在这里：
   Vue.prototype.$set = set
   Vue.prototype.$delete = del
 

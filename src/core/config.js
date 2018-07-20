@@ -32,6 +32,9 @@ export type Config = {
   _lifecycleHooks: Array<string>;
 };
 
+//我们可以看到，从 core/config.js 文件导出的 config 对象，大部分都是初始化了一个初始值，并且我们在 core/config.js 文件中能看到很多这样的注释
+//This is platform-dependent and may be overwritten.，这句话的意思是，这个配置的是与平台有关的，很可能被覆盖掉。这个时候我们在回看这段代码：
+
 export default ({
   /**
    * Option merge strategies (used in core/util/options)

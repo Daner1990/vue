@@ -50,8 +50,10 @@ export function initRender (vm: Component) {
   }
 }
 
+//renderMixin 方法在执行完 installRenderHelpers 函数之后，又在 Vue.prototype 上添加了两个方法，分别是：$nextTick 和 _render，最终经过 renderMixin 之后，Vue.prototype 将又被添加了如下方法：
 export function renderMixin (Vue: Class<Component>) {
   // install runtime convenience helpers
+  //一开始以 Vue.prototype 为参数调用了 installRenderHelpers 函数，这个函数来自于与 render.js 文件相同目录下的 render-helpers/index.js 文件，打开这个文件找到 installRenderHelpers 函数
   installRenderHelpers(Vue.prototype)
 
   Vue.prototype.$nextTick = function (fn: Function) {

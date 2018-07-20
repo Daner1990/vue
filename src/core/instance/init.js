@@ -12,6 +12,7 @@ import { extend, mergeOptions, formatComponentName } from '../util/index'
 
 let uid = 0
 
+//这个方法的作用就是在 Vue 的原型上添加了 _init 方法，这个 _init 方法看上去应该是内部初始化的一个方法，其实在 instance/index.js 文件中我们是见过这个方法的
 export function initMixin (Vue: Class<Component>) {
   Vue.prototype._init = function (options?: Object) {
     const vm: Component = this
